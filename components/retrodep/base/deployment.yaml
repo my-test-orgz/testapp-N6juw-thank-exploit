@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: retrodep
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: retrodep
+    app.kubernetes.io/part-of: my-test-app
+  name: retrodep
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: retrodep
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: retrodep
+    spec:
+      containers:
+      - image: quay.io/bpimente/retrodep:6c422d9c
+        imagePullPolicy: Always
+        name: container-image
+        resources: {}
+status: {}
